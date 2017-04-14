@@ -1,19 +1,20 @@
 $(document).ready(function(){
-    var click = 0;
+    var change = false;
+    console.log(change);
     $("select").each(function(){
         $("select").change(function(){
-            click++;
-            console.log($("select").find("option").length);
-
-            if(click < $("select").find("option").length){
-                $(this).next().removeAttr("disabled");
-                console.log(click)
+            if(change == false){
+                change = true;
+                $(this).nextAll().attr("disabled","disabled");
+                $(this).next().nextAll().css("background","#ccc")
+                $(this).nextAll().prop('selectedIndex', 0);
             }
             else{
-                $(this).nextAll().attr("disabled","disabled");
-                click = 0;
+                change = false;
+                $(this).next().removeAttr("disabled");
+                $(this).next().css("background","white")
+
             }
         })
     })
-    // console.log(disable)
 });
